@@ -22,13 +22,10 @@ public class Main {
         System.out.println("P_R_E_D_I_C_A_T_E(anon.class)");
 
         //Реализация predicate через анонимный класс
-        Predicate<Number> predicate = new Predicate<Number>() {
+        Predicate<Number> predicate = new Predicate<>() {
             @Override
             public boolean test(Number number) {
-                if (number.getNumber() > 0) {
-                    return true;
-                } else
-                    return false;
+                return number.getNumber() > 0;
             }
         };
 
@@ -41,10 +38,7 @@ public class Main {
         //Реализация predicate через лямбду
         System.out.println("P_R_E_D_I_C_A_T_E(lambda.class)");
         Predicate<Number> predicateL = number -> {
-            if (number.getNumber() > 0) {
-                return true;
-            } else
-                return false;
+            return number.getNumber() > 0;
         };
         for (Number number : numbers) {
             System.out.println(predicateL.test(number));
@@ -102,21 +96,18 @@ public class Main {
         Function<DoubleNumber, Long> converter = new Function<DoubleNumber, Long>() {
             @Override
             public Long apply(DoubleNumber doubleNumber) {
-                System.out.println(doubleNumber.getDoubleNum());
-                return null;
+                return doubleNumber.getDoubleNum().longValue();
             }
         };
         for (DoubleNumber doubleNumber : result) {
-            converter.apply(doubleNumber);
+            System.out.println(converter.apply(doubleNumber));
         }
         System.out.println("");
+
         System.out.println("F_U_N_C_T_I_O_N(lambda.class)");
-        Function<DoubleNumber, Long> converter1 = doubleNumber -> {
-            System.out.println(doubleNumber.getDoubleNum());
-            return null;
-        };
+        Function<DoubleNumber, Long> converter1 = doubleNumber -> doubleNumber.getDoubleNum().longValue();
         for (DoubleNumber doubleNumber : result) {
-            converter.apply(doubleNumber);
+            System.out.println(converter1.apply(doubleNumber));
         }
         System.out.println("__________________");
 
